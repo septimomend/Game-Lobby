@@ -29,7 +29,7 @@ void Lobby::AddPlayer()
 		Player* pIter = m_pHead; // pointer to class Player object
 		while (pIter->GetNext() != 0) // if next is not nullptr
 		{
-			pIter = pIter->GetNext();
+			pIter = pIter->GetNext(); // get next object to pointer
 		}
 		pIter->SetNext(pNewPlayer); // set new object to this pointer
 	}
@@ -37,14 +37,43 @@ void Lobby::AddPlayer()
 
 // delete first class Player object and clear memory
 //
-void RemovePlayer()
+void Lobby::RemovePlayer()
 {
-	//TODO
+	if (m_pHead == 0) // if no one object
+		cout << "The game lobby is empty. No one to remove." << endl;
+	else
+	{
+		Player* pTemp = m_pHead; // pTemp is pointer to first object
+		m_pHead = m_pHead->GetNext(); // go to next object in order to can't delete m_pHead
+		delete pTemp; // delete first object
+	}
 }
 
 // delete all class Player objects in list
 //
-void Clear()
+void Lobby::Clear()
 {
-	//TODO
+	while (m_pHead != 0)
+		RemovePlayer(); // remove players untill m_pHead reach the end of the list (nullptr)
+}
+
+// overload operator << and for displaying object of class Lobby in cout
+//
+ostream& operator<<(ostream& os, const Lobby& aLobby)
+{
+	Player* pIter = aLobby.m_pHead; // pIter is pointer to first object
+	os << "\nHere's who's in the game lobby:" << endl;
+	if (pIter == 0) // if no one object
+		os << "> The lobby is empty." << endl;
+	// display players untill m_pHead reach the end of the list
+	//
+	else
+	{
+		while (pIter != 0) 
+		{
+			os << pIter->GetName() << endl;
+			pIter = pIter->GetNext();
+		}
+	}
+	return os;
 }
