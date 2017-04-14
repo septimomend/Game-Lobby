@@ -19,7 +19,7 @@ void Lobby::AddPlayer()
 	cout << "Please enter the name of the new player: ";
 	string name;
 	cin >> name;
-	Player* pNewPlayer = new Player(name);
+	Player* pNewPlayer = new Player(name); // create new object named <name>
 	// if list is empty set as first
 	if (m_pHead == 0)
 		m_pHead = pNewPlayer;
@@ -62,7 +62,7 @@ void Lobby::Clear()
 ostream& operator<<(ostream& os, const Lobby& aLobby)
 {
 	Player* pIter = aLobby.m_pHead; // pIter is pointer to first object
-	os << "\nHere's who's in the game lobby:" << endl;
+	os << "Here's who's in the game lobby:" << endl;
 	if (pIter == 0) // if no one object
 		os << "> The lobby is empty." << endl;
 	// display players untill m_pHead reach the end of the list
