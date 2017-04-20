@@ -12,4 +12,5 @@ public:
 	void Clear(); // delete all class Player objects in list
 private:
 	Player* m_pHead; // pointer to first object in queue (begin of queue)
+	Player* m_pTail; // pointer to last object in queue
 };

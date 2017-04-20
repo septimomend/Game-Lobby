@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Lobby::Lobby() : m_pHead(0) //set m_pHead as nullptr
+Lobby::Lobby() : m_pHead(0), m_pTail(0) //set m_pHead as nullptr
 {
 }
 
@@ -26,12 +26,12 @@ void Lobby::AddPlayer()
 	// else add player to the end of list
 	else
 	{
-		Player* pIter = m_pHead; // pointer to class Player object
-		while (pIter->GetNext() != 0) // if next is not nullptr
+		m_pTail = m_pHead; // pointer to class Player object
+		while (m_pTail->GetNext() != 0) // if next is not nullptr
 		{
-			pIter = pIter->GetNext(); // get next object to pointer
+			m_pTail = m_pTail->GetNext(); // get next object to pointer
 		}
-		pIter->SetNext(pNewPlayer); // set new object to this pointer
+		m_pTail->SetNext(pNewPlayer); // set new object to this pointer
 	}
 }
 
